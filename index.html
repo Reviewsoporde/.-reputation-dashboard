@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reputation Dashboard - Week 23</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap');
@@ -107,97 +113,111 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-primar
 .gi-delta{font-size:12px;font-weight:500;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-light);font-family:var(--mono);}
 @media(max-width:768px){.g2,.g4,.kpis{grid-template-columns:1fr;}.ch-grid{grid-template-columns:1fr 1fr;}}
 </style>
+</head>
+<body>
 <div class="shell">
 <script>
-const WKS=['Wk 13','Wk 14','Wk 15','Wk 16','Wk 17','Wk 18','Wk 19','Wk 20','Wk 21','Wk 22'];
-const WK_DATES=['23–29 mrt 2026','30 mrt – 5 apr 2026','6–12 apr 2026','13–20 apr 2026','21–27 apr 2026','27 apr – 3 mei 2026','4–10 mei 2026','11–17 mei 2026','18–24 mei 2026','25–31 mei 2026'];
+const WKS=['Wk 13','Wk 14','Wk 15','Wk 16','Wk 17','Wk 18','Wk 19','Wk 20','Wk 21','Wk 22','Wk 23'];
+const WK_DATES=['23–29 mrt 2026','30 mrt – 5 apr 2026','6–12 apr 2026','13–20 apr 2026','21–27 apr 2026','27 apr – 3 mei 2026','4–10 mei 2026','11–17 mei 2026','18–24 mei 2026','25–31 mei 2026','1–7 jun 2026'];
 const NUL={tp:{reviews:686,score:4.0},gbp:{reviews:446,score:3.8},hk:{reviews:24,score:2.8},mag:{reviews:15,score:3.2},esvG:{reviews:48,score:3.6},esvT:{reviews:9,score:4.0},wmG:{reviews:243,score:3.7},wmT:{reviews:65,score:2.5}};
 const P={
   tp:{name:'TrustPilot Proforto',sub:'TrustPilot',color:'#2563EB',
-    totalRev:[886,929,979,1003,1029,1052,1069,1091,1134,1165],
-    score:[4.30,4.30,4.40,4.40,4.40,4.40,4.40,4.40,4.40,4.40],
-    sent:[4080,1679,900,5271,1358,1250,476,788,922,1048],
-    rev:[34,43,50,24,26,23,17,22,43,31],
-    conv:[0.83,2.56,5.56,0.46,1.91,1.84,3.57,2.79,4.66,2.96],
-    needed:[1773,1859,653,669,686,702,713,728,756,777],
-    open:[41.19,43.79,43.60,37.81,39.38,39.86,38.49,37.50,35.59,36.09],
-    click:[3.93,4.12,3.80,4.79,5.06,3.39,3.78,4.51,4.04,3.57],
-    delivery:[96.88,96.84,97.00,94.68,97.14,98.26,98.58,98.60,98.52,98.69],
-    newScore:[null,4.38,4.73,4.50,4.50,4.65,4.50,4.71,4.51,4.25],
-    estDate:'30-11-2026'},
+    totalRev:[886,929,979,1003,1029,1052,1069,1091,1134,1165,1200],
+    score:[4.30,4.30,4.40,4.40,4.40,4.40,4.40,4.40,4.40,4.40,4.50],
+    sent:[4080,1679,900,5271,1358,1250,476,788,922,1048,1000],
+    rev:[34,43,50,24,26,23,17,22,43,31,35],
+    conv:[0.83,2.56,5.56,0.46,1.91,1.84,3.57,2.79,4.66,2.96,3.50],
+    needed:[1773,1859,653,669,686,702,713,728,756,777,0],
+    open:[41.19,43.79,43.60,37.81,39.38,39.86,38.49,37.50,35.59,36.09,35.49],
+    click:[3.93,4.12,3.80,4.79,5.06,3.39,3.78,4.51,4.04,3.57,3.80],
+    delivery:[96.88,96.84,97.00,94.68,97.14,98.26,98.58,98.60,98.52,98.69,99.80],
+    newScore:[null,4.38,4.73,4.50,4.50,4.65,4.50,4.71,4.51,4.25,4.77],
+    estDate:'Op doel'},
   gbp:{name:'GBP Proforto',sub:'Google Business Profile',color:'#059669',
-    totalRev:[541,574,662,713,740,787,864,950,972,1065],
-    score:[3.90,4.00,4.10,4.10,4.10,4.10,4.20,4.30,4.30,4.30],
-    sent:[5440,1133,7251,5608,2105,2123,1994,2927,61,5684],
-    rev:[42,33,88,51,27,47,77,86,22,93],
-    conv:[0.77,2.91,1.21,0.91,1.28,2.21,3.86,2.94,0.00,1.64],
-    needed:[3247,2871,1766,1902,1974,2099,1728,1267,1296,1420],
-    open:[38.19,39.81,41.00,38.21,40.04,39.04,39.65,44.31,44.31,39.07],
-    click:[3.26,1.94,3.35,3.09,4.82,3.54,5.09,5.69,5.69,4.33],
-    delivery:[97.52,98.10,97.74,95.38,97.01,99.17,99.43,99.01,99.01,99.01],
-    newScore:[null,4.81,4.73,4.50,4.20,4.65,4.83,4.75,4.83,4.78],
-    estDate:'21-9-2026'},
+    totalRev:[541,574,662,713,740,787,864,950,972,1065,1267],
+    score:[3.90,4.00,4.10,4.10,4.10,4.10,4.20,4.30,4.30,4.30,4.30],
+    sent:[5440,1133,7251,5608,2105,2123,1994,2927,61,5684,6516],
+    rev:[42,33,88,51,27,47,77,86,22,93,202],
+    conv:[0.77,2.91,1.21,0.91,1.28,2.21,3.86,2.94,0.00,1.64,3.10],
+    needed:[3247,2871,1766,1902,1974,2099,1728,1267,1296,1420,1690],
+    open:[38.19,39.81,41.00,38.21,40.04,39.04,39.65,44.31,44.31,39.07,42.36],
+    click:[3.26,1.94,3.35,3.09,4.82,3.54,5.09,5.69,5.69,4.33,5.15],
+    delivery:[97.52,98.10,97.74,95.38,97.01,99.17,99.43,99.01,99.01,99.01,99.05],
+    newScore:[null,4.81,4.73,4.50,4.20,4.65,4.83,4.75,4.83,4.78,4.80],
+    estDate:'10-8-2026'},
   hk:{name:'GBP Hoofdkantoor',sub:'Google Business Profile',color:'#D97706',
-    totalRev:[89,113,163,192,222,237,237,237,237,238],
-    score:[4.30,4.20,4.30,4.40,4.40,4.40,4.40,4.40,4.40,4.40],
-    sent:[50,55,1975,2551,264,211,3,0,0,0],
-    rev:[26,24,50,29,30,15,0,0,0,1],
-    conv:[52.00,43.64,2.53,1.14,11.36,7.11,0.00,0.00,0.00,0.00],
-    needed:[179,340,218,128,148,158,158,158,158,159],
+    totalRev:[89,113,163,192,222,237,237,237,237,238,238],
+    score:[4.30,4.20,4.30,4.40,4.40,4.40,4.40,4.40,4.40,4.40,4.40],
+    sent:[50,55,1975,2551,264,211,3,0,0,0,0],
+    rev:[26,24,50,29,30,15,0,0,0,1,0],
+    conv:[52.00,43.64,2.53,1.14,11.36,7.11,0.00,0.00,0.00,0.00,0.00],
+    needed:[179,340,218,128,148,158,158,158,158,159,159],
     open:[29.51,28.32,38.80,40.20,39.58,39.79,43.90,43.90,43.90,0.00],
     click:[9.84,11.21,7.00,4.73,6.77,4.26,7.32,7.32,7.32,0.00],
     delivery:[98.39,98.17,98.80,98.34,98.46,98.85,100.00,100.00,100.00,0.00],
-    newScore:[null,null,4.73,4.67,4.61,4.00,null,null,null,0.00],
+    newScore:[null,null,4.73,4.67,4.61,4.00,null,null,null,0.00,0.00],
     estDate:'∞'},
   mag:{name:'GBP Magazijn',sub:'Google Business Profile',color:'#9333EA',
-    totalRev:[70,72,86,90,90,90,90,91,91,91],
-    score:[4.50,4.40,4.50,4.50,4.50,4.50,4.50,4.50,4.50,4.50],
-    sent:[45,60,673,889,75,71,1,0,0,0],
-    rev:[8,2,14,4,0,0,0,1,0,0],
-    conv:[17.78,3.33,2.08,0.45,0.00,0.00,0.00,0.00,0.00,0.00],
-    needed:[0,73,0,0,0,0,0,0,0,0],
+    totalRev:[70,72,86,90,90,90,90,91,91,91,91],
+    score:[4.50,4.40,4.50,4.50,4.50,4.50,4.50,4.50,4.50,4.50,4.50],
+    sent:[45,60,673,889,75,71,1,0,0,0,0],
+    rev:[8,2,14,4,0,0,0,1,0,0,0],
+    conv:[17.78,3.33,2.08,0.45,0.00,0.00,0.00,0.00,0.00,0.00,0.00],
+    needed:[0,73,0,0,0,0,0,0,0,0,0],
     open:[34.80,38.20,0,40.20,39.74,38.89,40.00,40.00,40.00,0.00],
     click:[3.10,3.90,0,3.76,3.85,2.76,0.00,0.00,0.00,0.00],
     delivery:[97.10,97.85,0,95.68,97.50,98.63,100.00,100.00,100.00,0.00],
-    newScore:[null,null,4.73,5.00,null,null,null,4.00,null,0.00],
+    newScore:[null,null,4.73,5.00,null,null,null,4.00,null,0.00,0.00],
     estDate:'Op doel'},
   esvG:{name:'GBP ESV Shop',color:'#DC2626',
-    totalRev:[46,51,51,51,51,51,51,51,51,51],
-    score:[3.55,3.60,3.60,3.60,3.60,3.60,3.60,3.60,3.60,3.60],
-    needed:[0,460,306,306,306,306,306,306,306,306],
-    newScore:[null,4.18,null,null,null,null,null,null,null,0.00],
+    totalRev:[46,51,51,51,51,51,51,51,51,51,51],
+    score:[3.55,3.60,3.60,3.60,3.60,3.60,3.60,3.60,3.60,3.60,3.60],
+    sent:[42,0,0,0,0,0,0,0,0,0,0],
+    rev:[0,5,0,0,0,0,0,0,0,0,0],
+    conv:[0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00],
+    needed:[0,460,306,306,306,306,306,306,306,306,306],
+    newScore:[null,4.18,null,null,null,null,null,null,null,0.00,0.00],
     estDate:'∞'},
   esvT:{name:'TP ESV Shop',color:'#DB2777',
-    totalRev:[104,10,11,11,11,11,12,14,17,20],
-    score:[4.18,4.10,4.10,4.10,4.20,4.20,4.20,4.20,4.10,4.10],
-    needed:[96,41,27,27,22,22,24,28,46,54],
-    newScore:[4.28,4.33,null,null,5.00,null,5.00,null,null,0.00],
-    estDate:'5-10-2026'},
+    totalRev:[10,10,11,11,11,11,12,14,17,20,22],
+    score:[4.18,4.10,4.10,4.10,4.20,4.20,4.20,4.20,4.10,4.10,4.10],
+    sent:[38,0,0,0,0,0,0,0,0,0,0],
+    rev:[8,0,0,0,1,0,1,2,3,3,2],
+    conv:[16.67,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00],
+    needed:[341,41,27,27,22,22,24,28,46,54,59],
+    newScore:[4.28,4.33,null,null,5.00,null,5.00,null,null,0.00,4.50],
+    estDate:'4-1-2027'},
   wmG:{name:'GBP Workmanstore',color:'#64748B',
-    totalRev:[68,244,244,244,244,243,243,243,243,243],
-    score:[4.36,3.70,3.70,3.70,3.70,3.70,3.70,3.70,3.70,3.70],
-    needed:[438,1953,1302,1302,1296,1296,1296,1296,1296,1296],
-    newScore:[4.58,4.64,null,null,null,null,null,null,null,0.00],
-    estDate:'∞'},
+    totalRev:[243,244,244,244,243,243,243,243,243,243,246],
+    score:[4.36,3.70,3.70,3.70,3.70,3.70,3.70,3.70,3.70,3.70,3.70],
+    sent:[48,0,0,0,0,0,0,0,0,0,167],
+    rev:[26,1,0,0,-1,0,0,0,0,0,3],
+    conv:[61.90,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,1.80],
+    needed:[438,1953,1302,1302,1296,1296,1296,1296,1296,1296,1312],
+    newScore:[4.58,4.64,null,null,null,null,null,null,null,0.00,5.00],
+    estDate:'30-10-2034'},
   wmT:{name:'TP Workmanstore',color:'#EF4444',
-    totalRev:[66,66,66,67,67,67,68,68,68,68],
-    score:[4.39,2.60,2.60,2.90,2.90,2.90,2.70,2.70,2.70,2.70],
-    needed:[33,1254,836,715,715,715,816,816,816,816],
-    newScore:[4.47,4.56,null,null,null,null,1.00,null,null,0.00],
-    estDate:'∞'},
+    totalRev:[66,66,66,67,67,67,68,68,68,68,71],
+    score:[4.39,2.60,2.60,2.90,2.90,2.90,2.70,2.70,2.70,2.70,3.30],
+    sent:[41,0,0,0,0,0,0,0,983,6732,164],
+    rev:[26,0,0,1,0,0,1,0,0,0,3],
+    conv:[68.42,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,1.83],
+    needed:[33,1254,836,715,715,715,816,816,816,816,568],
+    newScore:[4.47,4.56,null,null,null,null,1.00,null,null,0.00,5.00],
+    estDate:'28-1-2030'},
 };
 const W={
-  totalRev:[1776,2059,2261,2370,2453,2538,2634,2745,2813,2941],
-  score:[4.17,4.07,4.16,4.18,4.19,4.19,4.21,4.25,4.25,4.25],
-  sent:[9784,2927,10799,14319,3802,3655,2474,3715,1966,6732],
-  rev:[170,108,202,109,83,85,96,111,68,128],
-  conv:[1.74,1.74,1.87,0.76,2.18,2.33,3.88,2.99,4.66,2.99],
+  totalRev:[1776,2059,2261,2370,2453,2538,2634,2745,2813,2941,3186],
+  score:[4.17,4.07,4.16,4.18,4.19,4.19,4.21,4.25,4.25,4.25,4.31],
+  sent:[9784,2927,10799,14319,3802,3655,2474,3715,1966,6732,7847],
+  rev:[170,108,202,109,83,85,96,111,68,128,245],
+  conv:[1.74,1.74,1.87,0.76,2.18,2.33,3.88,2.99,4.66,2.99,6.92],
 };
 const E={
-  sent:[9784,2927,10799,14319,3802,3655,2474,3715,1966,13464],
-  delivery:[97.51,97.66,98.14,96.62,97.82,98.73,99.50,99.40,94.18,98.92],
-  open:[34.97,38.46,40.33,39.38,39.55,39.12,40.21,40.94,40.97,38.39],
-  click:[4.96,5.20,4.11,3.29,4.34,3.03,4.27,4.63,3.54,2.90],
+  sent:[9784,2927,10799,14319,3802,3655,2474,3715,1966,13464,12837],
+  delivery:[97.51,97.66,98.14,96.62,97.82,98.73,99.50,99.40,94.18,98.92,98.57],
+  open:[34.97,38.46,40.33,39.38,39.55,39.12,40.21,40.94,40.97,38.39,37.45],
+  click:[4.96,5.20,4.11,3.29,4.34,3.03,4.27,4.63,3.54,2.90,5.02],
 };
 const E_PER_WEEK=[
   [{name:'TrustPilot Proforto',sent:4080,del:96.88,open:41.19,click:3.93,bounce:3.12},{name:'Yotpo Proforto',sent:4557,del:97.26,open:30.99,click:2.82,bounce:2.74},{name:'GBP Proforto',sent:50,del:97.52,open:38.19,click:3.26,bounce:2.48},{name:'GBP Hoofdkantoor',sent:50,del:98.39,open:29.51,click:9.84,bounce:1.61},{name:'GBP Magazijn',sent:42,del:97.10,open:34.80,click:3.10,bounce:2.30},{name:'GBP ESV Shop',sent:48,del:98.05,open:28.60,click:8.40,bounce:1.70},{name:'GBP Workmanstore',sent:38,del:96.90,open:36.20,click:2.80,bounce:2.60},{name:'TP ESV Shop',sent:41,del:97.40,open:31.40,click:3.40,bounce:2.20},{name:'TP Workmanstore',sent:0,del:0,open:0,click:0,bounce:0},{name:'Gewogen totaal',sent:9615,del:97.51,open:34.97,click:4.96,bounce:2.49,total:true}],
@@ -210,6 +230,7 @@ const E_PER_WEEK=[
   [{name:'TrustPilot Proforto',sent:788,del:98.60,open:37.50,click:4.51,bounce:1.40},{name:'Yotpo Proforto',sent:4112,del:99.10,open:39.00,click:1.00,bounce:0.90},{name:'GBP Proforto',sent:2927,del:99.01,open:44.31,click:5.69,bounce:0.99},{name:'GBP Hoofdkantoor',sent:0,del:100.00,open:43.90,click:7.32,bounce:0.00},{name:'GBP Magazijn',sent:0,del:100.00,open:40.00,click:0.00,bounce:0.00},{name:'GBP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Workmanstore',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP Workmanstore',sent:0,del:0,open:0,click:0,bounce:0},{name:'Gewogen totaal',sent:3715,del:99.40,open:40.94,click:4.63,bounce:1.10,total:true}],
   [{name:'TrustPilot Proforto',sent:922,del:98.52,open:35.59,click:4.04,bounce:1.48},{name:'Yotpo Proforto',sent:61,del:85.00,open:43.00,click:0.90,bounce:0.90},{name:'GBP Proforto',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Hoofdkantoor',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Magazijn',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Workmanstore',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP Workmanstore',sent:983,del:0,open:0,click:0,bounce:0},{name:'Gewogen totaal',sent:1966,del:94.18,open:40.97,click:3.54,bounce:5.82,total:true}],
   [{name:'TrustPilot Proforto',sent:1048,del:98.69,open:36.09,click:3.57,bounce:1.21},{name:'Yotpo Proforto',sent:5684,del:99.05,open:40.00,click:0.80,bounce:0.95},{name:'GBP Proforto',sent:0,del:99.01,open:39.07,click:4.33,bounce:0.89},{name:'GBP Hoofdkantoor',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Magazijn',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Workmanstore',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP Workmanstore',sent:6732,del:0,open:0,click:0,bounce:0},{name:'Gewogen totaal',sent:13464,del:98.92,open:38.39,click:2.90,bounce:1.02,total:true}],
+  [{name:'TrustPilot Proforto',sent:1000,del:99.80,open:35.49,click:3.80,bounce:1.20},{name:'Yotpo Proforto',sent:4990,del:98.07,open:39.00,click:0.70,bounce:1.30},{name:'GBP Proforto',sent:6516,del:99.05,open:42.36,click:5.15,bounce:0.89},{name:'GBP Hoofdkantoor',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Magazijn',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'GBP Workmanstore',sent:167,del:96.18,open:38.41,click:6.62,bounce:3.82},{name:'TP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},{name:'TP Workmanstore',sent:164,del:97.35,open:31.97,click:8.84,bounce:2.65},{name:'Gewogen totaal',sent:12837,del:98.57,open:37.45,click:5.02,bounce:1.97,total:true}],
 ];
 const YOTPO_PER_WEEK=[
   {sent:4557,open:30.99,click:2.82,newRev:47,score:4.54,sentDelta:0,openDelta:0,clickDelta:0,revDelta:0},
@@ -222,6 +243,7 @@ const YOTPO_PER_WEEK=[
   {sent:4112,open:39.00,click:1.00,newRev:150,score:4.54,sentDelta:-357,openDelta:0.00,clickDelta:0.10,revDelta:35},
   {sent:4310,open:43.00,click:0.90,newRev:120,score:4.54,sentDelta:198,openDelta:4.00,clickDelta:-0.10,revDelta:-30},
   {sent:3873,open:40.00,click:0.80,newRev:95,score:4.54,sentDelta:-437,openDelta:-3.00,clickDelta:-0.10,revDelta:-25},
+  {sent:4990,open:39.00,click:0.70,newRev:141,score:4.54,sentDelta:1117,openDelta:-1.00,clickDelta:-0.10,revDelta:46},
 ];
 </script>
 <div class="topbar">
@@ -273,7 +295,7 @@ const YOTPO_PER_WEEK=[
 </div>
 
 <div id="esv_wm" class="page">
-  <div class="co-bar"><span class="co-name">ESV Shop & Workmanstore</span>&nbsp;<span class="bdg b-amber">4 kanalen · nog niet actief</span></div>
+  <div class="co-bar"><span class="co-name">ESV Shop & Workmanstore</span>&nbsp;<span class="bdg b-blue">4 kanalen · Workmanstore live</span></div>
   <div class="sub-group"><div class="sub-group-title">ESV Shop</div><div class="ch-sm-grid" id="esv-ch"></div></div>
   <div class="sub-group"><div class="sub-group-title">Workmanstore</div><div class="ch-sm-grid" id="wm-ch"></div></div>
   <div class="g2">
@@ -354,7 +376,7 @@ function renderAll(){
   ['pro-sent-leg','pro-rev-leg'].forEach(id=>{const el=document.getElementById(id);el.innerHTML='';['tp','gbp','hk','mag'].forEach(k=>el.innerHTML+=`<span><span class="ld" style="background:${P[k].color}"></span>${P[k].name.replace('TrustPilot ','TP ').replace('GBP ','')}</span>`);});
   mkC('pro-sent',['tp','gbp','hk','mag'].map(k=>L(sl(P[k].sent),P[k].color)),{yf:v=>v.toLocaleString('nl-NL')});
   mkC('pro-rev',['tp','gbp','hk','mag'].map(k=>L(sl(P[k].rev).map(v=>Math.max(0,v)),P[k].color,{fill:true})));
-  function renderSmCh(cid,keys){const cont=document.getElementById(cid);cont.innerHTML='';keys.forEach(k=>{const p=P[k],nu=NUL[k],sv=p.score[n],col=sc(sv);const ns=p.newScore[n],nsCol=ns!==null?sc(ns):'var(--text-tertiary)';const sd=sv-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';cont.innerHTML+=`<div class="ch-sm"><div class="ch-sm-name">${p.name}</div><div class="ch-sm-score" style="color:${col}">${sv.toFixed(2)}★ <span style="font-size:13px;font-weight:400;font-family:inherit"><span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> v/a nulmeting</span></div><div class="ch-sm-bar"><div class="ch-sm-fill" style="width:${(sv/5*100).toFixed(0)}%;background:${col}"></div></div><div class="ch-sm-stats"><div class="ch-sm-stat"><b>${p.totalRev[n]}</b>reviews</div><div class="ch-sm-stat"><b>${p.needed[n].toLocaleString('nl-NL')}</b>nodig</div><div class="ch-sm-stat"><b style="color:${nsCol}">${ns!==null?ns.toFixed(2)+'★':'—'}</b>inkomend</div></div><div class="ch-sm-note">Kanaal nog niet actief</div></div>`;});}
+  function renderSmCh(cid,keys){const cont=document.getElementById(cid);cont.innerHTML='';keys.forEach(k=>{const p=P[k],nu=NUL[k],sv=p.score[n],col=sc(sv);const ns=p.newScore[n],nsCol=ns!==null?sc(ns):'var(--text-tertiary)';const sd=sv-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';cont.innerHTML+=`<div class="ch-sm"><div class="ch-sm-name">${p.name}</div><div class="ch-sm-score" style="color:${col}">${sv.toFixed(2)}★ <span style="font-size:13px;font-weight:400;font-family:inherit"><span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> v/a nulmeting</span></div><div class="ch-sm-bar"><div class="ch-sm-fill" style="width:${(sv/5*100).toFixed(0)}%;background:${col}"></div></div><div class="ch-sm-stats"><div class="ch-sm-stat"><b>${p.totalRev[n]}</b>reviews</div><div class="ch-sm-stat"><b>${p.needed[n].toLocaleString('nl-NL')}</b>nodig</div><div class="ch-sm-stat"><b style="color:${nsCol}">${ns!==null?ns.toFixed(2)+'★':'—'}</b>inkomend</div></div><div class="ch-sm-note">Activiteit afhankelijk van geselecteerde week</div></div>`;});}
   renderSmCh('esv-ch',['esvG','esvT']);renderSmCh('wm-ch',['wmG','wmT']);
   mkC('ewm-score',[L(sl(P.esvG.score),'#DC2626'),L(sl(P.esvT.score),'#DB2777'),L(sl(P.wmG.score),'#64748B'),L(sl(P.wmT.score),'#EF4444'),GL(4.5,n+1)],{min:1.5,max:5.3,yf:v=>v.toFixed(1)+'★'});
   mkC('ewm-rev',[L(P.esvG.rev?sl(P.esvG.rev).map(v=>Math.max(0,v)):[],P.esvG.color,{fill:true}),L(P.esvT.rev?sl(P.esvT.rev).map(v=>Math.max(0,v)):[],P.esvT.color,{fill:true}),L(P.wmG.rev?sl(P.wmG.rev).map(v=>Math.max(0,v)):[],P.wmG.color,{fill:true}),L(P.wmT.rev?sl(P.wmT.rev).map(v=>Math.max(0,v)):[],P.wmT.color,{fill:true})]);
@@ -371,3 +393,6 @@ function renderAll(){
 buildWeekNav();
 renderAll();
 </script>
+</body>
+</html>
+
