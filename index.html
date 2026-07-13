@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reputation Dashboard - Week 27</title>
+<title>Reputation Dashboard - Week 28</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap');
@@ -308,6 +308,78 @@ E_PER_WEEK.push([
 
 YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentDelta:null,openDelta:null,clickDelta:null,revDelta:null});
 
+/* ===== WEEK 28 UPDATE — 6-7-26 t/m 12-7-26 ===== */
+NUL.bc={reviews:0,score:0};
+P.bc={
+  name:'GBP Business Center',sub:'Google Business Profile',color:'#0F766E',
+  totalRev:Array(WKS.length).fill(0),
+  score:Array(WKS.length).fill(0),
+  sent:Array(WKS.length).fill(0),
+  rev:Array(WKS.length).fill(0),
+  conv:Array(WKS.length).fill(0),
+  needed:Array(WKS.length).fill(0),
+  open:Array(WKS.length).fill(0),
+  click:Array(WKS.length).fill(0),
+  delivery:Array(WKS.length).fill(0),
+  newScore:Array(WKS.length).fill(null),
+  estDate:'Op doel'
+};
+
+WKS.push('Wk 28');
+WK_DATES.push('6–12 jul 2026');
+W_NEEDED.push(2043);
+
+function addWeek28Channel(p,d){
+  p.totalRev.push(d.totalRev);
+  p.score.push(d.score);
+  p.sent.push(d.sent);
+  p.rev.push(d.rev);
+  p.conv.push(d.conv);
+  p.needed.push(d.needed);
+  p.newScore.push(d.newScore);
+  p.estDate = d.estDate;
+  if (p.open) p.open.push(d.open ?? 0);
+  if (p.click) p.click.push(d.click ?? 0);
+  if (p.delivery) p.delivery.push(d.delivery ?? 0);
+}
+
+addWeek28Channel(P.tp,{totalRev:1375,score:4.50,sent:746,rev:31,conv:4.16,needed:0,estDate:'Op doel',newScore:4.35,open:32.62,click:3.63,delivery:98.84});
+addWeek28Channel(P.gbp,{totalRev:1962,score:4.50,sent:1116,rev:57,conv:5.11,needed:0,estDate:'Op doel',newScore:4.66,open:34.55,click:3.64,delivery:98.21});
+addWeek28Channel(P.hk,{totalRev:244,score:4.40,sent:182,rev:3,conv:1.65,needed:163,estDate:'2-8-2027',newScore:5.00,open:36.90,click:2.38,delivery:97.67});
+addWeek28Channel(P.mag,{totalRev:94,score:4.50,sent:0,rev:1,conv:0.00,needed:0,estDate:'Op doel',newScore:0.00,open:0,click:0,delivery:0});
+addWeek28Channel(P.esvG,{totalRev:56,score:3.60,sent:0,rev:0,conv:0.00,needed:336,estDate:'∞',newScore:0.00});
+addWeek28Channel(P.esvT,{totalRev:33,score:4.40,sent:0,rev:0,conv:0.00,needed:22,estDate:'∞',newScore:0.00});
+addWeek28Channel(P.wmG,{totalRev:297,score:3.80,sent:274,rev:8,conv:2.92,needed:1386,estDate:'12-11-2029',newScore:3.50});
+addWeek28Channel(P.wmT,{totalRev:102,score:4.30,sent:267,rev:5,conv:1.87,needed:136,estDate:'25-1-2027',newScore:5.00});
+addWeek28Channel(P.bc,{totalRev:28,score:4.60,sent:1996,rev:28,conv:1.40,needed:0,estDate:'Op doel',newScore:4.61,open:34.70,click:2.39,delivery:98.15});
+
+W.totalRev.push(4163);
+W.score.push(4.43);
+W.sent.push(2585);
+W.rev.push(105);
+W.conv.push(4.06);
+
+E.sent.push(7575);
+E.delivery.push(98.03);
+E.open.push(37.58);
+E.click.push(4.64);
+
+E_PER_WEEK.push([
+  {name:'TrustPilot Proforto',sent:746,del:98.84,open:32.62,click:3.63,bounce:1.16},
+  {name:'Yotpo Proforto',sent:null,del:null,open:null,click:null,bounce:null},
+  {name:'GBP Proforto',sent:1116,del:98.21,open:34.55,click:3.64,bounce:1.79},
+  {name:'GBP Hoofdkantoor',sent:182,del:97.67,open:36.90,click:2.38,bounce:2.33},
+  {name:'GBP Magazijn',sent:0,del:0,open:0,click:0,bounce:0},
+  {name:'GBP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},
+  {name:'GBP Workmanstore',sent:274,del:98.04,open:41.33,click:10.33,bounce:1.96},
+  {name:'TP ESV Shop',sent:0,del:0,open:0,click:0,bounce:0},
+  {name:'TP Workmanstore',sent:267,del:97.22,open:41.07,click:7.14,bounce:2.78},
+  {name:'GBP Business Center',sent:1996,del:98.15,open:34.70,click:2.39,bounce:1.85},
+  {name:'Gewogen totaal',sent:7575,del:98.03,open:37.58,click:4.64,bounce:1.89,total:true}
+]);
+
+YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentDelta:null,openDelta:null,clickDelta:null,revDelta:null});
+
 </script>
 <div class="topbar">
   <div class="topbar-left"><h1>Reputation Dashboard</h1><span id="week-label"></span></div>
@@ -432,7 +504,7 @@ function renderAll(){
   mkC('ov-conv',[L(sl(W.conv),'#2563EB',{fill:true}),DS(ma4(sl(W.conv)),'#D97706'),GL(2,n+1)],{yf:v=>v+'%'});
   mkC('ov-vol',[L(sl(W.sent).map(v=>+(v/100).toFixed(1)),'#2563EB',{fill:true,yAxisID:'y'}),L(sl(W.rev),'#059669',{fill:false,yAxisID:'y2'})],{y2:true,yf:v=>(v*100).toLocaleString('nl-NL'),y2f:v=>v+' rev'});
   const tb=document.getElementById('ov-tbl');tb.innerHTML='';
-  const groups=[{label:'Proforto',keys:['tp','gbp','hk','mag']},{label:'ESV Shop',keys:['esvG','esvT']},{label:'Workmanstore',keys:['wmG','wmT']}];
+  const groups=[{label:'Proforto',keys:['tp','gbp','hk','mag']},{label:'ESV Shop',keys:['esvG','esvT']},{label:'Workmanstore',keys:['wmG','wmT']}];if(P.bc&&n>=WKS.indexOf('Wk 28')){groups.push({label:'Business Center',keys:['bc']});}
   groups.forEach(g=>{tb.innerHTML+=`<tr class="tr-group"><td colspan="10">${g.label}</td></tr>`;g.keys.forEach(k=>{const p=P[k],nu=NUL[k];const conv=p.conv?p.conv[n]:0,prevC=n>0&&p.conv?p.conv[n-1]:conv,dc=conv-prevC;const dcc=dc>0?'up':dc<0?'dn':'neu',sg=dc>=0?'+':'';const col=sc(p.score[n]),need=p.needed[n];const sd=p.score[n]-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';const nr=p.rev?(p.rev[n]||0):0;const nb=need===0?'<span class="bdg b-green">Op doel</span>':need<200?'<span class="bdg b-amber">Dichtbij</span>':'<span class="bdg b-red">Priority</span>';const de=p.estDate==='Op doel'?`<span class="up" style="font-size:12px">✓ Op doel</span>`:p.estDate==='∞'?`<span class="neu" ${M}>∞</span>`:`<span ${M} style="font-size:12px">${p.estDate}</span>`;tb.innerHTML+=`<tr><td style="font-weight:500">${p.name}</td><td ${M}>${p.totalRev[n].toLocaleString('nl-NL')}</td><td style="color:${col};font-weight:600" ${M}>${p.score[n].toFixed(2)}★</td><td style="color:var(--text-secondary)" ${M}>${nr.toLocaleString('nl-NL')}</td><td><span class="${sdc}" ${M}>${sd>0?'+':''}${sd.toFixed(2)}★</span></td><td ${M}>${conv.toFixed(2)}%</td><td><span class="${dcc}" ${M}>${sg}${dc.toFixed(2)}%</span></td><td ${M}>${need.toLocaleString('nl-NL')}</td><td>${de}</td><td>${nb}</td></tr>`;});});
   tb.innerHTML+=`<tr class="tr-total"><td>Gewogen totaal</td><td ${M}>${W.totalRev[n].toLocaleString('nl-NL')}</td><td style="color:var(--blue)" ${M}>${W.score[n].toFixed(2)}★</td><td style="color:var(--text-secondary)" ${M}>${W.rev[n].toLocaleString('nl-NL')}</td><td><span class="up" ${M}>+${(W.score[n]-4.17).toFixed(2)}★</span></td><td ${M}>${W.conv[n].toFixed(2)}%</td><td><span class="${W.conv[n]-(n>0?W.conv[n-1]:W.conv[n])>=0?'up':'dn'}" ${M}>${W.conv[n]-(n>0?W.conv[n-1]:W.conv[n])>=0?'+':''}${(W.conv[n]-(n>0?W.conv[n-1]:W.conv[n])).toFixed(2)}%</span></td><td ${M}>${W_NEEDED[n].toLocaleString('nl-NL')}</td><td>—</td><td></td></tr>`;
   function renderGroei(cid,keys){const c=document.getElementById(cid);c.innerHTML='';keys.forEach(k=>{const p=P[k],nu=NUL[k],sd=p.score[n]-nu.score,rd=p.totalRev[n]-nu.reviews;const sdc=sd>0?'up':sd<0?'dn':'neu',rc=rd>=0?'up':'dn';c.innerHTML+=`<div class="gi"><div class="gi-name" style="color:${p.color}">${p.name.replace('TrustPilot ','TP ').replace('GBP ','')}</div><div class="gi-row"><span class="gi-lbl">Score nulmeting</span><span class="gi-val">${nu.score.toFixed(1)}★</span></div><div class="gi-row"><span class="gi-lbl">Score nu</span><span class="gi-val" style="color:${sc(p.score[n])}">${p.score[n].toFixed(2)}★</span></div><div class="gi-row"><span class="gi-lbl">Reviews nulmeting</span><span class="gi-val">${nu.reviews.toLocaleString('nl-NL')}</span></div><div class="gi-row"><span class="gi-lbl">Reviews nu</span><span class="gi-val">${p.totalRev[n].toLocaleString('nl-NL')}</span></div><div class="gi-delta">Score: <span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> &nbsp;·&nbsp; Reviews: <span class="${rc}">${rd>=0?'+':''}${rd}</span></div></div>`;});}
