@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reputation Dashboard - Week 28</title>
+<title>Reputation Dashboard - Week 29</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap');
@@ -380,6 +380,62 @@ E_PER_WEEK.push([
 
 YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentDelta:null,openDelta:null,clickDelta:null,revDelta:null});
 
+/* ===== WEEK 29 UPDATE — 13-7-26 t/m 19-7-26 ===== */
+WKS.push('Wk 29');
+WK_DATES.push('13–19 jul 2026');
+W_NEEDED.push(1817);
+
+function addWeek29Channel(p,d){
+  p.totalRev.push(d.totalRev);
+  p.score.push(d.score);
+  p.sent.push(d.sent);
+  p.rev.push(d.rev);
+  p.conv.push(d.conv);
+  p.needed.push(d.needed);
+  p.newScore.push(d.newScore);
+  p.estDate = d.estDate;
+  if (p.open) p.open.push(d.open ?? 0);
+  if (p.click) p.click.push(d.click ?? 0);
+  if (p.delivery) p.delivery.push(d.delivery ?? 0);
+}
+
+addWeek29Channel(P.tp,{totalRev:1403,score:4.50,sent:586,rev:28,conv:4.78,needed:0,estDate:'Op doel',newScore:4.76,open:28.93,click:3.51,delivery:98.21});
+addWeek29Channel(P.gbp,{totalRev:1990,score:4.50,sent:549,rev:28,conv:5.10,needed:0,estDate:'Op doel',newScore:4.48,open:39.07,click:2.55,delivery:98.28});
+addWeek29Channel(P.hk,{totalRev:257,score:4.40,sent:725,rev:13,conv:1.79,needed:172,estDate:'26-10-2026',newScore:4.08,open:37.75,click:3.83,delivery:98.97});
+addWeek29Channel(P.mag,{totalRev:95,score:4.50,sent:0,rev:1,conv:0.00,needed:0,estDate:'Op doel',newScore:5.00,open:0,click:0,delivery:0});
+addWeek29Channel(P.esvG,{totalRev:64,score:3.80,sent:162,rev:8,conv:4.94,needed:299,estDate:'12-4-2027',newScore:0.00});
+addWeek29Channel(P.esvT,{totalRev:40,score:4.30,sent:196,rev:7,conv:3.57,needed:54,estDate:'14-9-2026',newScore:4.14});
+addWeek29Channel(P.wmG,{totalRev:305,score:3.90,sent:274,rev:8,conv:2.92,needed:1220,estDate:'25-6-2029',newScore:4.89});
+addWeek29Channel(P.wmT,{totalRev:108,score:4.40,sent:266,rev:6,conv:2.26,needed:72,estDate:'12-10-2026',newScore:4.83});
+addWeek29Channel(P.bc,{totalRev:51,score:4.50,sent:1737,rev:23,conv:1.32,needed:0,estDate:'Op doel',newScore:4.54,open:38.33,click:3.15,delivery:98.54});
+
+W.totalRev.push(4262);
+W.score.push(4.44);
+W.sent.push(2758);
+W.rev.push(99);
+W.conv.push(3.59);
+
+E.sent.push(7748);
+E.delivery.push(98.33);
+E.open.push(37.01);
+E.click.push(6.05);
+
+E_PER_WEEK.push([
+  {name:'TrustPilot Proforto',sent:586,del:98.21,open:28.93,click:3.51,bounce:1.79},
+  {name:'Yotpo Proforto',sent:null,del:null,open:null,click:null,bounce:null},
+  {name:'GBP Proforto',sent:549,del:98.28,open:39.07,click:2.55,bounce:1.57},
+  {name:'GBP Hoofdkantoor',sent:725,del:98.97,open:37.75,click:3.83,bounce:1.03},
+  {name:'GBP Magazijn',sent:0,del:0,open:0,click:0,bounce:0},
+  {name:'GBP ESV Shop',sent:162,del:98.64,open:37.24,click:10.34,bounce:1.36},
+  {name:'GBP Workmanstore',sent:274,del:97.44,open:37.22,click:9.02,bounce:2.56},
+  {name:'TP ESV Shop',sent:196,del:99.44,open:38.76,click:9.55,bounce:0.56},
+  {name:'TP Workmanstore',sent:266,del:97.37,open:40.18,click:8.88,bounce:2.63},
+  {name:'GBP Business Center',sent:1737,del:98.54,open:38.33,click:3.15,bounce:1.41},
+  {name:'Gewogen totaal',sent:7748,del:98.33,open:37.01,click:6.05,bounce:1.60,total:true}
+]);
+
+YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentDelta:null,openDelta:null,clickDelta:null,revDelta:null});
+
 </script>
 <div class="topbar">
   <div class="topbar-left"><h1>Reputation Dashboard</h1><span id="week-label"></span></div>
@@ -417,7 +473,7 @@ YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentD
 </div>
 
 <div id="proforto" class="page">
-  <div class="co-bar"><span class="co-name">Proforto</span>&nbsp;<span class="bdg b-blue">4 kanalen</span></div>
+  <div class="co-bar"><span class="co-name">Proforto</span>&nbsp;<span class="bdg b-blue">5 kanalen incl. Business Center</span></div>
   <div class="ch-grid" id="pro-ch"></div>
   <div class="g2" style="margin-bottom:1.25rem">
     <div class="card"><div class="ct">Voortgang naar 4,5★ per kanaal</div><div class="cs">Hoe ver is elk kanaal nog van het doel?</div><div class="prog-list" id="pro-prog"></div></div>
@@ -458,6 +514,7 @@ YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentD
     <div class="sc-card"><div class="sc-title">GBP Proforto</div><div class="sc-sub">Gem. score per binnenkomende review · 4-wks MA · doel 4,5★</div><div style="position:relative;height:180px"><canvas id="sc-gbp"></canvas></div></div>
     <div class="sc-card"><div class="sc-title">GBP Hoofdkantoor</div><div class="sc-sub">Gem. score per binnenkomende review · doel 4,5★</div><div style="position:relative;height:180px"><canvas id="sc-hk"></canvas></div></div>
     <div class="sc-card"><div class="sc-title">GBP Magazijn</div><div class="sc-sub">Gem. score per binnenkomende review · doel 4,5★</div><div style="position:relative;height:180px"><canvas id="sc-mag"></canvas></div></div>
+    <div class="sc-card"><div class="sc-title">GBP Business Center</div><div class="sc-sub">Gem. score per binnenkomende review · doel 4,5★</div><div style="position:relative;height:180px"><canvas id="sc-bc"></canvas></div></div>
     <div class="sc-card"><div class="sc-title">ESV Shop</div><div class="sc-sub">GBP (rood) · TrustPilot (roze) · doel 4,5★</div><div style="position:relative;height:180px"><canvas id="sc-esv"></canvas></div></div>
     <div class="sc-card"><div class="sc-title">Workmanstore</div><div class="sc-sub">GBP (grijs) · TrustPilot (rood) · doel 4,5★</div><div style="position:relative;height:180px"><canvas id="sc-wm"></canvas></div></div>
   </div>
@@ -487,6 +544,7 @@ function renderAll(){
   document.getElementById('week-label').textContent=WKS[n]+' · '+(WK_DATES[n]||'');
   document.querySelectorAll('.week-nav button').forEach((btn,i)=>{btn.classList.toggle('wk-active',i===n);});
   function sl(arr){return arr?arr.slice(0,n+1):[];}
+  const proKeys=(P.bc&&n>=WKS.indexOf('Wk 28'))?['tp','gbp','hk','mag','bc']:['tp','gbp','hk','mag'];
   const d1=W.score[n]-W.score[Math.max(0,n-1)];
   const d2=W.conv[n]-W.conv[Math.max(0,n-1)];
   const d3=W.sent[n]-W.sent[Math.max(0,n-1)];
@@ -504,20 +562,20 @@ function renderAll(){
   mkC('ov-conv',[L(sl(W.conv),'#2563EB',{fill:true}),DS(ma4(sl(W.conv)),'#D97706'),GL(2,n+1)],{yf:v=>v+'%'});
   mkC('ov-vol',[L(sl(W.sent).map(v=>+(v/100).toFixed(1)),'#2563EB',{fill:true,yAxisID:'y'}),L(sl(W.rev),'#059669',{fill:false,yAxisID:'y2'})],{y2:true,yf:v=>(v*100).toLocaleString('nl-NL'),y2f:v=>v+' rev'});
   const tb=document.getElementById('ov-tbl');tb.innerHTML='';
-  const groups=[{label:'Proforto',keys:['tp','gbp','hk','mag']},{label:'ESV Shop',keys:['esvG','esvT']},{label:'Workmanstore',keys:['wmG','wmT']}];if(P.bc&&n>=WKS.indexOf('Wk 28')){groups.push({label:'Business Center',keys:['bc']});}
+  const groups=[{label:'Proforto',keys:proKeys},{label:'ESV Shop',keys:['esvG','esvT']},{label:'Workmanstore',keys:['wmG','wmT']}];
   groups.forEach(g=>{tb.innerHTML+=`<tr class="tr-group"><td colspan="10">${g.label}</td></tr>`;g.keys.forEach(k=>{const p=P[k],nu=NUL[k];const conv=p.conv?p.conv[n]:0,prevC=n>0&&p.conv?p.conv[n-1]:conv,dc=conv-prevC;const dcc=dc>0?'up':dc<0?'dn':'neu',sg=dc>=0?'+':'';const col=sc(p.score[n]),need=p.needed[n];const sd=p.score[n]-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';const nr=p.rev?(p.rev[n]||0):0;const nb=need===0?'<span class="bdg b-green">Op doel</span>':need<200?'<span class="bdg b-amber">Dichtbij</span>':'<span class="bdg b-red">Priority</span>';const de=p.estDate==='Op doel'?`<span class="up" style="font-size:12px">✓ Op doel</span>`:p.estDate==='∞'?`<span class="neu" ${M}>∞</span>`:`<span ${M} style="font-size:12px">${p.estDate}</span>`;tb.innerHTML+=`<tr><td style="font-weight:500">${p.name}</td><td ${M}>${p.totalRev[n].toLocaleString('nl-NL')}</td><td style="color:${col};font-weight:600" ${M}>${p.score[n].toFixed(2)}★</td><td style="color:var(--text-secondary)" ${M}>${nr.toLocaleString('nl-NL')}</td><td><span class="${sdc}" ${M}>${sd>0?'+':''}${sd.toFixed(2)}★</span></td><td ${M}>${conv.toFixed(2)}%</td><td><span class="${dcc}" ${M}>${sg}${dc.toFixed(2)}%</span></td><td ${M}>${need.toLocaleString('nl-NL')}</td><td>${de}</td><td>${nb}</td></tr>`;});});
   tb.innerHTML+=`<tr class="tr-total"><td>Gewogen totaal</td><td ${M}>${W.totalRev[n].toLocaleString('nl-NL')}</td><td style="color:var(--blue)" ${M}>${W.score[n].toFixed(2)}★</td><td style="color:var(--text-secondary)" ${M}>${W.rev[n].toLocaleString('nl-NL')}</td><td><span class="up" ${M}>+${(W.score[n]-4.17).toFixed(2)}★</span></td><td ${M}>${W.conv[n].toFixed(2)}%</td><td><span class="${W.conv[n]-(n>0?W.conv[n-1]:W.conv[n])>=0?'up':'dn'}" ${M}>${W.conv[n]-(n>0?W.conv[n-1]:W.conv[n])>=0?'+':''}${(W.conv[n]-(n>0?W.conv[n-1]:W.conv[n])).toFixed(2)}%</span></td><td ${M}>${W_NEEDED[n].toLocaleString('nl-NL')}</td><td>—</td><td></td></tr>`;
   function renderGroei(cid,keys){const c=document.getElementById(cid);c.innerHTML='';keys.forEach(k=>{const p=P[k],nu=NUL[k],sd=p.score[n]-nu.score,rd=p.totalRev[n]-nu.reviews;const sdc=sd>0?'up':sd<0?'dn':'neu',rc=rd>=0?'up':'dn';c.innerHTML+=`<div class="gi"><div class="gi-name" style="color:${p.color}">${p.name.replace('TrustPilot ','TP ').replace('GBP ','')}</div><div class="gi-row"><span class="gi-lbl">Score nulmeting</span><span class="gi-val">${nu.score.toFixed(1)}★</span></div><div class="gi-row"><span class="gi-lbl">Score nu</span><span class="gi-val" style="color:${sc(p.score[n])}">${p.score[n].toFixed(2)}★</span></div><div class="gi-row"><span class="gi-lbl">Reviews nulmeting</span><span class="gi-val">${nu.reviews.toLocaleString('nl-NL')}</span></div><div class="gi-row"><span class="gi-lbl">Reviews nu</span><span class="gi-val">${p.totalRev[n].toLocaleString('nl-NL')}</span></div><div class="gi-delta">Score: <span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> &nbsp;·&nbsp; Reviews: <span class="${rc}">${rd>=0?'+':''}${rd}</span></div></div>`;});}
-  renderGroei('gr-proforto',['tp','gbp','hk','mag']);renderGroei('gr-esv',['esvG','esvT']);renderGroei('gr-workman',['wmG','wmT']);
+  renderGroei('gr-proforto',proKeys);renderGroei('gr-esv',['esvG','esvT']);renderGroei('gr-workman',['wmG','wmT']);
   const proCh=document.getElementById('pro-ch');proCh.innerHTML='';
-  ['tp','gbp','hk','mag'].forEach(k=>{const p=P[k],nu=NUL[k],sv=p.score[n],col=sc(sv);const ns=p.newScore[n];const prevNs=p.newScore.slice(0,n).filter(v=>v!==null);const nsPrev=prevNs.length?prevNs[prevNs.length-1]:null;const nsDelta=ns!==null&&nsPrev!==null?ns-nsPrev:null;const nsCol=ns!==null?sc(ns):'var(--text-tertiary)';const nsDc=nsDelta===null?'neu':nsDelta>0?'up':'dn';const nsDstr=nsDelta!==null?(nsDelta>0?'+':'')+nsDelta.toFixed(2):'';const sd=sv-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';proCh.innerHTML+=`<div class="ch"><div class="ch-title">${p.name.replace('GBP ','')}</div><div class="ch-subtitle">${p.sub||''}</div><div class="ch-score-row"><span class="ch-score-now" style="color:${col}">${sv.toFixed(2)}★</span><span class="ch-score-meta"><span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> v/a nulmeting</span></div><div class="ch-bar"><div class="ch-fill" style="width:${(sv/5*100).toFixed(0)}%;background:${col}"></div></div><div class="ch-stats"><div class="ch-stat">+<b>${Math.max(0,p.rev[n])}</b> reviews wk</div><div class="ch-stat">+<b>${p.totalRev[n]-nu.reviews}</b> v/a nulmeting</div><div class="ch-stat">Conv: <b>${p.conv[n].toFixed(2)}%</b></div><div class="ch-stat">Nodig: <b>${p.needed[n].toLocaleString('nl-NL')}</b></div></div><div class="ch-incoming"><span class="ch-incoming-label">Gem. binnenkomende score</span><span class="ch-incoming-val" style="color:${nsCol}">${ns!==null?ns.toFixed(2)+'★':'—'}${nsDstr?` <span class="${nsDc}" style="font-size:11px">${nsDstr}</span>`:''}</span></div></div>`;});
+  proKeys.forEach(k=>{const p=P[k],nu=NUL[k],sv=p.score[n],col=sc(sv);const ns=p.newScore[n];const prevNs=p.newScore.slice(0,n).filter(v=>v!==null);const nsPrev=prevNs.length?prevNs[prevNs.length-1]:null;const nsDelta=ns!==null&&nsPrev!==null?ns-nsPrev:null;const nsCol=ns!==null?sc(ns):'var(--text-tertiary)';const nsDc=nsDelta===null?'neu':nsDelta>0?'up':'dn';const nsDstr=nsDelta!==null?(nsDelta>0?'+':'')+nsDelta.toFixed(2):'';const sd=sv-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';proCh.innerHTML+=`<div class="ch"><div class="ch-title">${p.name.replace('GBP ','')}</div><div class="ch-subtitle">${p.sub||''}</div><div class="ch-score-row"><span class="ch-score-now" style="color:${col}">${sv.toFixed(2)}★</span><span class="ch-score-meta"><span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> v/a nulmeting</span></div><div class="ch-bar"><div class="ch-fill" style="width:${(sv/5*100).toFixed(0)}%;background:${col}"></div></div><div class="ch-stats"><div class="ch-stat">+<b>${Math.max(0,p.rev[n])}</b> reviews wk</div><div class="ch-stat">+<b>${p.totalRev[n]-nu.reviews}</b> v/a nulmeting</div><div class="ch-stat">Conv: <b>${p.conv[n].toFixed(2)}%</b></div><div class="ch-stat">Nodig: <b>${p.needed[n].toLocaleString('nl-NL')}</b></div></div><div class="ch-incoming"><span class="ch-incoming-label">Gem. binnenkomende score</span><span class="ch-incoming-val" style="color:${nsCol}">${ns!==null?ns.toFixed(2)+'★':'—'}${nsDstr?` <span class="${nsDc}" style="font-size:11px">${nsDstr}</span>`:''}</span></div></div>`;});
   const prog=document.getElementById('pro-prog');prog.innerHTML='';
-  ['tp','gbp','hk','mag'].forEach(k=>{const p=P[k],sv=p.score[n],need=p.needed[n],col=sc(sv);const maxNeed=Math.max(...['tp','gbp','hk','mag'].map(x=>P[x].needed[n]))||1;const pct=need===0?100:Math.max(5,Math.round((1-(need/maxNeed))*100));prog.innerHTML+=`<div class="prog-item"><div class="prog-header"><span class="prog-name" style="color:${p.color}">${p.name.replace('TrustPilot ','TP ').replace('GBP ','')}</span><span class="prog-vals">${sv.toFixed(2)}★ → 4,50★</span></div><div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${col}"></div></div><div class="prog-goal">${need===0?'✓ Op doel':need.toLocaleString('nl-NL')+' reviews nog nodig'}</div></div>`;});
+  proKeys.forEach(k=>{const p=P[k],sv=p.score[n],need=p.needed[n],col=sc(sv);const maxNeed=Math.max(...proKeys.map(x=>P[x].needed[n]))||1;const pct=need===0?100:Math.max(5,Math.round((1-(need/maxNeed))*100));prog.innerHTML+=`<div class="prog-item"><div class="prog-header"><span class="prog-name" style="color:${p.color}">${p.name.replace('TrustPilot ','TP ').replace('GBP ','')}</span><span class="prog-vals">${sv.toFixed(2)}★ → 4,50★</span></div><div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${col}"></div></div><div class="prog-goal">${need===0?'✓ Op doel':need.toLocaleString('nl-NL')+' reviews nog nodig'}</div></div>`;});
   const datumList=document.getElementById('pro-datum');datumList.innerHTML='';
-  ['tp','gbp','hk','mag'].forEach(k=>{const p=P[k];const isGoal=p.estDate==='Op doel',isInf=p.estDate==='∞'||p.estDate==='—';const pct=isGoal?100:isInf?3:40;const fc=isGoal?'var(--green)':isInf?'var(--border)':'var(--blue)';const dv=isGoal?`<span class="up">✓ Op doel</span>`:isInf?`<span class="neu">${p.estDate}</span>`:`<span>${p.estDate}</span>`;datumList.innerHTML+=`<div class="datum-item"><span class="datum-name" style="color:${p.color}">${p.name.replace('TrustPilot ','TP ').replace('GBP ','')}</span><div class="datum-track"><div class="datum-fill" style="width:${pct}%;background:${fc}"></div></div><span class="datum-val">${dv}</span></div>`;});
-  ['pro-sent-leg','pro-rev-leg'].forEach(id=>{const el=document.getElementById(id);el.innerHTML='';['tp','gbp','hk','mag'].forEach(k=>el.innerHTML+=`<span><span class="ld" style="background:${P[k].color}"></span>${P[k].name.replace('TrustPilot ','TP ').replace('GBP ','')}</span>`);});
-  mkC('pro-sent',['tp','gbp','hk','mag'].map(k=>L(sl(P[k].sent),P[k].color)),{yf:v=>v.toLocaleString('nl-NL')});
-  mkC('pro-rev',['tp','gbp','hk','mag'].map(k=>L(sl(P[k].rev).map(v=>Math.max(0,v)),P[k].color,{fill:true})));
+  proKeys.forEach(k=>{const p=P[k];const isGoal=p.estDate==='Op doel',isInf=p.estDate==='∞'||p.estDate==='—';const pct=isGoal?100:isInf?3:40;const fc=isGoal?'var(--green)':isInf?'var(--border)':'var(--blue)';const dv=isGoal?`<span class="up">✓ Op doel</span>`:isInf?`<span class="neu">${p.estDate}</span>`:`<span>${p.estDate}</span>`;datumList.innerHTML+=`<div class="datum-item"><span class="datum-name" style="color:${p.color}">${p.name.replace('TrustPilot ','TP ').replace('GBP ','')}</span><div class="datum-track"><div class="datum-fill" style="width:${pct}%;background:${fc}"></div></div><span class="datum-val">${dv}</span></div>`;});
+  ['pro-sent-leg','pro-rev-leg'].forEach(id=>{const el=document.getElementById(id);el.innerHTML='';proKeys.forEach(k=>el.innerHTML+=`<span><span class="ld" style="background:${P[k].color}"></span>${P[k].name.replace('TrustPilot ','TP ').replace('GBP ','')}</span>`);});
+  mkC('pro-sent',proKeys.map(k=>L(sl(P[k].sent),P[k].color)),{yf:v=>v.toLocaleString('nl-NL')});
+  mkC('pro-rev',proKeys.map(k=>L(sl(P[k].rev).map(v=>Math.max(0,v)),P[k].color,{fill:true})));
   function renderSmCh(cid,keys){const cont=document.getElementById(cid);cont.innerHTML='';keys.forEach(k=>{const p=P[k],nu=NUL[k],sv=p.score[n],col=sc(sv);const ns=p.newScore[n],nsCol=ns!==null?sc(ns):'var(--text-tertiary)';const sd=sv-nu.score,sdc=sd>0?'up':sd<0?'dn':'neu';cont.innerHTML+=`<div class="ch-sm"><div class="ch-sm-name">${p.name}</div><div class="ch-sm-score" style="color:${col}">${sv.toFixed(2)}★ <span style="font-size:13px;font-weight:400;font-family:inherit"><span class="${sdc}">${sd>0?'+':''}${sd.toFixed(2)}★</span> v/a nulmeting</span></div><div class="ch-sm-bar"><div class="ch-sm-fill" style="width:${(sv/5*100).toFixed(0)}%;background:${col}"></div></div><div class="ch-sm-stats"><div class="ch-sm-stat"><b>${p.totalRev[n]}</b>reviews</div><div class="ch-sm-stat"><b>${p.needed[n].toLocaleString('nl-NL')}</b>nodig</div><div class="ch-sm-stat"><b style="color:${nsCol}">${ns!==null?ns.toFixed(2)+'★':'—'}</b>inkomend</div></div><div class="ch-sm-note">Activiteit afhankelijk van geselecteerde week</div></div>`;});}
   renderSmCh('esv-ch',['esvG','esvT']);renderSmCh('wm-ch',['wmG','wmT']);
   mkC('ewm-score',[L(sl(P.esvG.score),'#DC2626'),L(sl(P.esvT.score),'#DB2777'),L(sl(P.wmG.score),'#64748B'),L(sl(P.wmT.score),'#EF4444'),GL(4.5,n+1)],{min:1.5,max:5.3,yf:v=>v.toFixed(1)+'★'});
@@ -536,6 +594,7 @@ function renderAll(){
   scC('sc-gbp',[L(sl(P.gbp.newScore),'#059669',{fill:true}),DS(ma4(sl(P.gbp.newScore)),'#D97706'),GL(4.5,n+1)]);
   scC('sc-hk',[L(sl(P.hk.newScore),'#D97706',{fill:true}),DS(ma4(sl(P.hk.newScore)),'#D97706'),GL(4.5,n+1)]);
   scC('sc-mag',[L(sl(P.mag.newScore),'#9333EA',{fill:true}),GL(4.5,n+1)]);
+  if(P.bc){scC('sc-bc',[L(sl(P.bc.newScore),'#0F766E',{fill:true}),GL(4.5,n+1)]);}
   scC('sc-esv',[L(sl(P.esvG.newScore),'#DC2626'),L(sl(P.esvT.newScore),'#DB2777'),GL(4.5,n+1)]);
   scC('sc-wm',[L(sl(P.wmG.newScore),'#64748B'),L(sl(P.wmT.newScore),'#EF4444'),GL(4.5,n+1)]);
 }
