@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reputation Dashboard - Week 32</title>
+<title>Reputation Dashboard - Week 33</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap');
@@ -601,6 +601,63 @@ E_PER_WEEK.push([
   {name:'TP Workmanstore',sent:211,del:95.93,open:31.13,click:7.08,bounce:4.07},
   {name:'GBP Business Center',sent:1421,del:98.00,open:38.92,click:3.28,bounce:2.00},
   {name:'Gewogen totaal',sent:8607,del:97.99,open:39.30,click:5.39,bounce:1.85,total:true}
+]);
+
+YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentDelta:null,openDelta:null,clickDelta:null,revDelta:null});
+
+
+/* ===== WEEK 33 UPDATE — 10-8-26 t/m 16-8-26 ===== */
+WKS.push('Wk 33');
+WK_DATES.push('10–16 aug 2026');
+W_NEEDED.push(2067);
+
+function addWeek33Channel(p,d){
+  p.totalRev.push(d.totalRev);
+  p.score.push(d.score);
+  p.sent.push(d.sent);
+  p.rev.push(d.rev);
+  p.conv.push(d.conv);
+  p.needed.push(d.needed);
+  p.newScore.push(d.newScore);
+  p.estDate = d.estDate;
+  if (p.open) p.open.push(d.open ?? 0);
+  if (p.click) p.click.push(d.click ?? 0);
+  if (p.delivery) p.delivery.push(d.delivery ?? 0);
+}
+
+addWeek33Channel(P.tp,{totalRev:1497,score:4.50,sent:425,rev:16,conv:3.76,needed:0,estDate:'Op doel',newScore:4.63,open:36.89,click:5.12,delivery:98.79});
+addWeek33Channel(P.gbp,{totalRev:2044,score:4.50,sent:430,rev:4,conv:0.93,needed:0,estDate:'Op doel',newScore:3.92,open:37.25,click:4.00,delivery:98.28});
+addWeek33Channel(P.hk,{totalRev:312,score:4.40,sent:524,rev:12,conv:2.29,needed:208,estDate:'21-12-2026',newScore:3.80,open:41.28,click:4.98,delivery:98.25});
+addWeek33Channel(P.mag,{totalRev:96,score:4.50,sent:0,rev:1,conv:0.00,needed:0,estDate:'Op doel',newScore:5.00,open:0,click:0,delivery:0});
+addWeek33Channel(P.esvG,{totalRev:91,score:4.00,sent:207,rev:2,conv:0.97,needed:304,estDate:'16-7-2029',newScore:4.50});
+addWeek33Channel(P.esvT,{totalRev:67,score:4.40,sent:201,rev:5,conv:2.49,needed:45,estDate:'19-10-2026',newScore:4.40});
+addWeek33Channel(P.wmG,{totalRev:326,score:3.90,sent:187,rev:9,conv:4.81,needed:1304,estDate:'28-5-2029',newScore:5.00});
+addWeek33Channel(P.wmT,{totalRev:132,score:4.40,sent:211,rev:2,conv:0.95,needed:88,estDate:'21-6-2027',newScore:5.00});
+addWeek33Channel(P.bc,{totalRev:176,score:4.40,sent:1428,rev:20,conv:1.40,needed:118,estDate:'28-9-2026',newScore:4.69,open:40.82,click:4.04,delivery:98.26});
+
+W.totalRev.push(4741);
+W.score.push(4.43);
+W.sent.push(3613);
+W.rev.push(71);
+W.conv.push(1.97);
+
+E.sent.push(8603);
+E.delivery.push(98.27);
+E.open.push(39.50);
+E.click.push(4.30);
+
+E_PER_WEEK.push([
+  {name:'TrustPilot Proforto',sent:425,del:98.79,open:36.89,click:5.12,bounce:1.21},
+  {name:'Yotpo Proforto',sent:null,del:null,open:null,click:null,bounce:null},
+  {name:'GBP Proforto',sent:430,del:98.28,open:37.25,click:4.00,bounce:1.47},
+  {name:'GBP Hoofdkantoor',sent:524,del:98.25,open:41.28,click:4.98,bounce:1.75},
+  {name:'GBP Magazijn',sent:0,del:0,open:0,click:0,bounce:0},
+  {name:'GBP ESV Shop',sent:207,del:98.17,open:45.96,click:5.59,bounce:1.22},
+  {name:'GBP Workmanstore',sent:187,del:97.77,open:39.43,click:5.14,bounce:2.23},
+  {name:'TP ESV Shop',sent:201,del:99.38,open:39.62,click:4.40,bounce:0.63},
+  {name:'TP Workmanstore',sent:211,del:97.44,open:35.26,click:4.74,bounce:2.56},
+  {name:'GBP Business Center',sent:1428,del:98.26,open:40.82,click:4.04,bounce:1.74},
+  {name:'Gewogen totaal',sent:8603,del:98.27,open:39.50,click:4.30,bounce:1.57,total:true}
 ]);
 
 YOTPO_PER_WEEK.push({sent:null,open:null,click:null,newRev:null,score:null,sentDelta:null,openDelta:null,clickDelta:null,revDelta:null});
